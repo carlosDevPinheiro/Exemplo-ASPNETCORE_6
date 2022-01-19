@@ -17,7 +17,7 @@ namespace Ambientes.WEB
                 .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
                 .AddEnvironmentVariables();
 
-            if (hostEnvironment.IsProduction())
+            if (hostEnvironment.IsDevelopment())
             {
                 builder.AddUserSecrets<Startup>();
             }
