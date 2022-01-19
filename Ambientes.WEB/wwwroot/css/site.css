@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -16,3 +16,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.h2-myra {
+    font-size: 14px;
+    transition-property: font-size;
+    transition-duration: 2s;
+   
+}
+
+.crescer {
+    font-size: 36px;
+}
+
+.display-myra:before {
+    content: "ASPNET CORE 6";
+    font-size: 5rem;
+    color: blue;
+}
+
+                         

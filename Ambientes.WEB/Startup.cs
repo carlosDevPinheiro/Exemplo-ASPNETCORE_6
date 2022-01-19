@@ -17,7 +17,7 @@ namespace Ambientes.WEB
                 .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
                 .AddEnvironmentVariables();
 
-            // Esse trecho de pode ser usado se precisar debugar produção, e não expor as informações sensiveis 
+            //TODO:1 Esse trecho de pode ser usado se precisar debugar produção, e não expor as informações sensiveis 
 
             //if (hostEnvironment.IsProduction())
             //{
