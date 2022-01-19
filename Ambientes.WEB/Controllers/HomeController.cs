@@ -16,6 +16,7 @@ namespace Ambientes.WEB.Controllers
 
         public IActionResult Index()
         {
+            //TODO: Acesso ao setting.json na controller 
             @ViewBag.Ambiente = Configuration["Ambiente"];
             return View();
         }

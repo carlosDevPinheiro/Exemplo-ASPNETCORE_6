@@ -8,7 +8,7 @@ namespace Ambientes.WEB
     public class Startup : IStartup
     {
         private IConfiguration? Configuration { get; set; }
-
+        private IHostEnvironment Ambiente { get; }
         public Startup(IConfiguration config, IHostEnvironment hostEnvironment)
         {
             var builder = new ConfigurationBuilder()
@@ -17,21 +17,30 @@ namespace Ambientes.WEB
                 .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
                 .AddEnvironmentVariables();
 
-            if (hostEnvironment.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
+            // Esse trecho de pode ser usado se precisar debugar produção, e não expor as informações sensiveis 
 
+            //if (hostEnvironment.IsProduction())
+            //{
+            //    builder.AddUserSecrets<Startup>();
+            //}
+
+            Ambiente = hostEnvironment;
             Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            string? connString = null;
 
-            // Add services to the container.
-            Configuration.GetConnectionString("DefaultConnection");
+            //TODO:1  AQUI definimos as credenciais que a aplicação vai usar no ambiente setado
+           
+            connString = Ambiente.IsProduction() 
+                ? Environment.GetEnvironmentVariable("JAVA_HOME") 
+                : Configuration.GetConnectionString("DefaultConnection");
+
+           
             services.AddDbContext<ApplicationDbContext>(options =>
-                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connString ?? ""));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                  .AddEntityFrameworkStores<ApplicationDbContext>();
