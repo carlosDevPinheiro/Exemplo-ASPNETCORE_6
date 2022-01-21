@@ -4,3 +4,5 @@
 /Ambientes.WEB/bin
 /Ambientes.WEB/obj
 /Ambientes.WEB\Ambientes.WEB.csproj.user
+/SAST/Myra.ScanSecurity.Web6/Web6/bin
+/SAST/Myra.ScanSecurity.Web6/Web6/obj
