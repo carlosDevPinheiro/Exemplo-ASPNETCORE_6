@@ -1,0 +1,6 @@
+﻿-- rodar dentro do visual studio sem instalação global
+
+dotnet new tool-manifest # if you are setting up this repo
+dotnet tool install --local security-scan --version 5.6.0
+
+exemplo: dotnet security-scan .\Ambientes.sln 
